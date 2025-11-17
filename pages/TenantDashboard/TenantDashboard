@@ -1,0 +1,410 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FaHeart, FaEnvelope, FaFileAlt, FaTrash, FaEye, FaReply, FaTimes, FaComments } from 'react-icons/fa';
+import './TenantDashboard.css';
+
+const TenantDashboard = () => {
+  const [activeTab, setActiveTab] = useState('applications');
+  const [savedProperties, setSavedProperties] = useState([]);
+  const [applications, setApplications] = useState([]);
+  const [messages, setMessages] = useState([]);
+  const [selectedMessage, setSelectedMessage] = useState(null);
+  const [replyContent, setReplyContent] = useState('');
+  const [isReplying, setIsReplying] = useState(false);
+  const [currentUser] = useState({ id: 101 }); // Mock user data - replace with actual user context
+  const navigate = useNavigate();
+  const [landlords, setLandlords] = useState([]);
+  const [selectedLandlord, setSelectedLandlord] = useState(null);
+  const [receiverId, setReceiverId] = useState(null);
+  const [chatMessages, setChatMessages] = useState([]);
+  const [pendingApplications, setPendingApplications] = useState([]);
+  const [acceptedApplications, setAcceptedApplications] = useState([]);
+  const [rejectedApplications, setRejectedApplications] = useState([]);
+
+  const token = localStorage.getItem('userToken');
+  const fetchOptions = {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  };
+
+  useEffect(() => {
+    const fetchProposals = async () => {
+      try {
+        const [pending, accepted, rejected] = await Promise.all([
+          fetch('http://localhost:5062/api/Proposal/my-pending-proposals', fetchOptions).then(res => res.json()),
+          fetch('http://localhost:5062/api/Proposal/my-accepted-proposals', fetchOptions).then(res => res.json()),
+          fetch('http://localhost:5062/api/Proposal/my-rejected-proposals', fetchOptions).then(res => res.json()),
+        ]);
+
+        setPendingApplications(pending);
+        setAcceptedApplications(accepted);
+        setRejectedApplications(rejected);
+      } catch (error) {
+        console.error('Error fetching proposals:', error);
+      }
+    };
+
+
+    const fetchSavedProperties = async () => {
+      try {
+        const userId = localStorage.getItem('UserId');
+        console.log("Saved properties response:", userId);
+        const response = await fetch(`http://localhost:5062/api/SavePost/saved-posts/${userId}`, fetchOptions);
+        const properties = await response.json();
+        console.log("Saved properties response:", properties);
+        console.log("Type of savedProperties:", typeof data, Array.isArray(properties));
+
+        setSavedProperties(properties);
+      } catch (error) {
+        console.error('Error fetching saved properties:', error);
+      }
+    };
+
+    fetchProposals();
+    fetchSavedProperties();
+  }, []);
+
+const deleteProposal = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5062/api/Proposal/delete-proposal/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (response.ok) {
+        setPendingApplications(prev => prev.filter(p => p.id !== id));
+      }
+    } catch (error) {
+      console.error('Error deleting proposal:', error);
+    }
+  };
+  const withdrawApplication = (id) => {
+    setApplications(applications.filter(app => app.id !== id));
+  };
+
+  const viewApplicationDetails = (application) => {
+    navigate(`/application/${application.id}`, {
+      state: { application }
+    });
+  };
+
+
+  const handleViewMessage = (messageId) => {
+    const message = messages.find(msg => msg.id === messageId);
+    if (message) {
+      setMessages(messages.map(msg =>
+        msg.id === messageId ? { ...msg, read: true } : msg
+      ));
+      setSelectedMessage(message);
+      setIsReplying(false);
+      setReplyContent('');
+    }
+  };
+
+  const handleBackToMessages = () => {
+    setSelectedMessage(null);
+    setIsReplying(false);
+    setReplyContent('');
+  };
+
+  const handleDeleteMessage = (messageId) => {
+    setMessages(messages.filter(msg => msg.id !== messageId));
+    if (selectedMessage && selectedMessage.id === messageId) {
+      setSelectedMessage(null);
+    }
+  };
+
+  const handleStartReply = () => {
+    setIsReplying(true);
+    setReplyContent(`Re: ${selectedMessage.subject}\n\nDear ${selectedMessage.from},\n\n`);
+  };
+
+  const handleCancelReply = () => {
+    setIsReplying(false);
+    setReplyContent('');
+  };
+
+  const handleReplySubmit = () => {
+    if (replyContent.trim() === '') return;
+
+    const newMessage = {
+      id: messages.length + 1,
+      from: 'You',
+      subject: `Re: ${selectedMessage.subject}`,
+      date: new Date().toISOString().split('T')[0],
+      read: true,
+      propertyId: selectedMessage.propertyId,
+      content: replyContent
+    };
+
+    setMessages([newMessage, ...messages]);
+    setIsReplying(false);
+    setReplyContent('');
+    alert('Reply sent successfully!');
+  };
+
+  const handleStartChat = (landlordId) => {
+    navigate(`/chat/landlord${landlordId}-tenant${currentUser.id}`);
+  };
+
+  const getPropertyTitle = (propertyId) => {
+    const property = savedProperties.find(p => p.id === propertyId) ||
+      applications.find(a => a.propertyId === propertyId);
+    return property ? property.title || property.propertyTitle : 'General Inquiry';
+  };
+
+  const viewSavedProperty = (propertyId) => {
+    navigate(`/apply/${propertyId}`);
+  };
+  
+/* <button className={`nav-item ${activeTab === 'chat' ? 'active' : ''}`} onClick={() => navigate('/chat/landlord123-tenant456')}>
+          <FaEnvelope /> Chat
+        </button>*/
+        return (
+          <div className="tenant-dashboard">
+            <div className="sidebar">
+              <button 
+                className={`nav-item ${activeTab === 'applications' ? 'active' : ''}`}
+                onClick={() => setActiveTab('applications')}
+              >
+                <FaFileAlt /> My Applications ({pendingApplications.length + acceptedApplications.length + rejectedApplications.length})
+              </button>
+              <button 
+                className={`nav-item ${activeTab === 'saved' ? 'active' : ''}`}
+                onClick={() => setActiveTab('saved')}
+              >
+                <FaHeart /> Saved Properties ({savedProperties.length})
+              </button>
+              <button 
+                className={`nav-item ${activeTab === 'pending' ? 'active' : ''}`}
+                onClick={() => setActiveTab('pending')}
+              >
+                ⏳ Pending Applications ({pendingApplications.length})
+              </button>
+              <button 
+                className={`nav-item ${activeTab === 'accepted' ? 'active' : ''}`}
+                onClick={() => setActiveTab('accepted')}
+              >
+                ✅ Accepted Applications ({acceptedApplications.length})
+              </button>
+              <button 
+                className={`nav-item ${activeTab === 'rejected' ? 'active' : ''}`}
+                onClick={() => setActiveTab('rejected')}
+              >
+                ❌ Rejected Applications ({rejectedApplications.length})
+              </button>
+              <button className={`nav-item ${activeTab === 'chat' ? 'active' : ''}`} onClick={() => navigate('/chat/landlord123-tenant456')}>
+          <FaEnvelope /> Chat
+        </button>
+            </div>
+      
+            <div className="main-content">
+              {activeTab === 'applications' && (
+                <div className="applications-section">
+                  <h2>📄 All My Applications</h2>
+                  {[
+                    ...pendingApplications.map(app => ({ ...app, status: '⏳ Pending' })),
+                    ...acceptedApplications.map(app => ({ ...app, status: '✅ Accepted' })),
+                    ...rejectedApplications.map(app => ({ ...app, status: '❌ Rejected' }))
+                  ].length === 0 ? (
+                    <p>No applications found.</p>
+                  ) : (
+                    <div className="applications-list">
+                    {[
+                      ...pendingApplications.map(app => ({ ...app, status: '⏳ Pending' })),
+                      ...acceptedApplications.map(app => ({ ...app, status: '✅ Accepted' })),
+                      ...rejectedApplications.map(app => ({ ...app, status: '❌ Rejected' }))
+                    ].map(app => {
+                      console.log("Application:", app); // هنا هيطبع كل البيانات الخاصة بكل app في الـ Console
+                      return (
+                        <div key={app.id} className="application-card">
+                          
+                          <div className="application-header">
+                            <h3>Proposal for {app.postTitle} 
+                              {app.status === '✅ Accepted' && ' ✅'}
+                              {app.status === '❌ Rejected' && ' ❌'}
+                              {app.status === '⏳ Pending' && ' ⏳'}
+                            </h3>
+                            <span className={`status-badge ${app.status.includes('Pending') ? 'pending' : app.status.includes('Accepted') ? 'accepted' : 'rejected'}`}>{app.status}</span>
+                          </div>
+                          <div className="application-details">
+                            <p><strong>Name:</strong> {app.name}</p>
+                            <p><strong>Phone:</strong> {app.phone}</p>
+                            <p><strong>Rental status :</strong> {app.rental_status === 0 ? 'Available' : 'Rented'}</p>
+                            <p>
+                              <strong>Document:</strong>{' '}
+                              <a
+                                href={`data:application/pdf;base64,${app.documentBase64}`}
+                                download={`proposal-${app.id}.pdf`}
+                              >
+                                Download
+                              </a>
+                            </p>
+                          </div>
+                          {app.status.includes('⏳ Pending') && (
+                            <button onClick={() => deleteProposal(app.id)} className="withdraw-btn">
+                              <FaTrash /> Withdraw
+                            </button>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  
+                  )}
+                </div>
+              )}
+      
+              {activeTab === 'pending' && (
+                <div className="applications-section">
+                  <h2>⏳ Pending Applications</h2>
+                  {pendingApplications.length === 0 ? (
+                    <p>No pending applications found.</p>
+                  ) : (
+                    <div className="applications-list">
+                      {pendingApplications.map(app => (
+                        <div key={app.id} className="application-card">
+                          <div className="application-header">
+                            <h3>Proposal for {app.postTitle} ⏳</h3>
+                            <span className="status-badge pending">⏳ Pending</span>
+                          </div>
+                          <div className="application-details">
+                            <p><strong>Name:</strong> {app.name}</p>
+                            <p><strong>Phone:</strong> {app.phone}</p>
+                            <p><strong>Rental status :</strong> {app.rental_status === 0 ? 'Available' : 'Rented'}</p>
+                            <p>
+                              <strong>Document:</strong>{' '}
+                              <a
+                                href={`data:application/pdf;base64,${app.documentBase64}`}
+                                download={`proposal-${app.id}.pdf`}
+                              >
+                                Download
+                              </a>
+                            </p>
+                            <button onClick={() => deleteProposal(app.id)} className="delete-btn">🗑️ Delete</button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+      
+              {activeTab === 'accepted' && (
+                <div className="applications-section">
+                  <h2>✅ Accepted Applications</h2>
+                  {acceptedApplications.length === 0 ? (
+                    <p>No accepted applications found.</p>
+                  ) : (
+                    <div className="applications-list">
+                      {acceptedApplications.map(app => (
+                        <div key={app.id} className="application-card">
+                          <div className="application-header">
+                            <h3>Proposal for {app.postTitle} ✅</h3>
+                            <span className="status-badge accepted">✅ Accepted</span>
+                          </div>
+                          <div className="application-details">
+                            <p><strong>Name:</strong> {app.name}</p>
+                            <p><strong>Phone:</strong> {app.phone}</p>
+                            <p><strong>Rental status :</strong> {app.rental_status === 0 ? 'Available' : 'Rented'}</p>
+                            <p>
+                              <strong>Document:</strong>{' '}
+                              <a
+                                href={`data:application/pdf;base64,${app.documentBase64}`}
+                                download={`proposal-${app.id}.pdf`}
+                              >
+                                Download
+                              </a>
+                            </p>
+                            <button onClick={() => deleteProposal(app.id)} className="delete-btn">🗑️ Delete</button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+      
+              {activeTab === 'rejected' && (
+                <div className="applications-section">
+                  <h2>❌ Rejected Applications</h2>
+                  {rejectedApplications.length === 0 ? (
+                    <p>No rejected applications found.</p>
+                  ) : (
+                    <div className="applications-list">
+                      {rejectedApplications.map(app => (
+                        <div key={app.id} className="application-card">
+                          <div className="application-header">
+                            <h3>Proposal for {app.postTitle} ❌</h3>
+                            <span className="status-badge rejected">❌ Rejected</span>
+                          </div>
+                          <div className="application-details">
+                            <p><strong>Name:</strong> {app.name}</p>
+                            <p><strong>Phone:</strong> {app.phone}</p>
+                            <p><strong>Rental status :</strong> {app.rental_status === 0 ? 'Available' : 'Rented'}</p>
+                            <p>
+                              <strong>Document:</strong>{' '}
+                              <a
+                                href={`data:application/pdf;base64,${app.documentBase64}`}
+                                download={`proposal-${app.id}.pdf`}
+                              >
+                                Download
+                              </a>
+                            </p>
+                            <button onClick={() => deleteProposal(app.id)} className="delete-btn">🗑️ Delete</button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+      
+              {activeTab === 'saved' && (
+                <div className="saved-section">
+                  <h2>Saved Properties</h2>
+                  {savedProperties.length === 0 ? (
+                    <p>You haven't saved any properties yet.</p>
+                  ) : (
+                    <div className="saved-list">
+                      
+                      {savedProperties.map(property => (
+                        <div key={property.id} className="saved-card">
+                          <img 
+                            src={`data:image/jpeg;base64,${property.image}`}
+                            alt={property.title}
+                            className="saved-property-image"
+                            onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src = `${process.env.PUBLIC_URL}/assets/properties/default.jfif`;
+                            }}
+                          />
+                          <div className="saved-card-content">
+                            <h3>{property.title}</h3>
+                            <p className="location">{property.location}</p>
+                            <p className="price">${property.price}/month</p>
+                            <div className="property-actions">
+                              <button 
+                                className="view-btn"
+                                onClick={() => viewSavedProperty(property.id)}
+                              >
+                                <FaEye /> Apply Now
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      };
+      
+      export default TenantDashboard;
+      
