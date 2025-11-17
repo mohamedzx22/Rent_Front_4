@@ -1,0 +1,105 @@
+
+.dropdown-custom #dropdown-custom-components {
+    width: 100%;
+    background: var(--secondary-color); 
+    font-family: var(--fontFamily);
+    text-align: left;
+    padding: 5px 40px 5px 5px;
+    padding-left: 22px !important;
+    border: none;
+    font-size: var(--textFont);
+    position: relative;
+    color: var(--textClr);
+}
+
+.dropdown-custom #dropdown-custom-components span {
+    font-family: var(--fontFamily) !important; 
+    font-weight: bold;
+    color: #333; 
+}
+
+
+.dropdown-custom .dropdown-toggle {
+    font-family: bootstrap-icons !important;
+    font-style: normal;
+    font-weight: 400 !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    background-color: var(--secondary-color); 
+    color: #333; 
+}
+
+
+.dropdown-custom .dropdown-toggle::before {
+    position: absolute;
+    left: 0px;
+    bottom: 6px;
+    content: "\f52a";
+    font-size: var(--bodyText);
+    color: #333; 
+}
+
+.dropdown-custom .dropdown-toggle::after {
+    border: none;
+    position: absolute;
+    right: 20px;
+    bottom: 6px;
+    content: "\f282";
+    font-size: var(--bodyText);
+    color: #333; 
+}
+
+
+.dropdown-custom .dropdown-menu {
+    width: 100%;
+    padding: 10px;
+    min-width: 12rem;
+    background: var(--secondary-color); 
+}
+
+
+.dropdown-custom .list-unstyled li a {
+    padding: 10px 8px;
+    font-weight: 500;
+    transition: all 0.4s ease-out;
+    color: #333;
+}
+
+
+.dropdown-custom .list-unstyled li:hover a {
+    font-weight: bold;
+    background-color: #e6e6e6; 
+}
+
+
+.item-search-label {
+    color: var(--secondary-color); 
+}
+
+/* تغيير تأثير hover على أيام الـ DatePicker */
+.react-datepicker__day:hover {
+    background-color: var(--secondary-color); 
+    color: #fff; 
+}
+
+
+.react-datepicker__day--selected {
+    background-color: var(--secondary-color); 
+    color: #fff; 
+}
+
+
+.react-datepicker__header {
+    background-color: #F5F5DC !important;
+    border: none;
+}
+
+
+.react-datepicker__current-month {
+    color: #333; 
+}
+
+.react-datepicker__day, .react-datepicker__day-name {
+    color: #333; 
+}

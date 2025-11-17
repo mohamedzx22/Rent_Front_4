@@ -1,0 +1,99 @@
+/* تفعيل الأسهم في الـ slick slider */
+.slick-prev,
+.slick-next {
+    background-color: var(--secondary-color); /* تغيير لون الخلفية للأسهم إلى اللون الثانوي */
+    border-radius: 50%;
+    width: 40px; /* تكبير حجم الأيقونة */
+    height: 40px; /* تكبير ارتفاع الأيقونة */
+    color: #fff; /* تغيير لون النص داخل الأسهم */
+    font-size: 22px; /* تكبير حجم الخط داخل الأسهم */
+    line-height: 40px; /* تعديل المحاذاة داخل الأيقونة */
+    text-align: center;
+    z-index: 1; /* تأكيد أن الأسهم تظهر فوق المحتوى */
+}
+
+/* تغيير لون الأسهم عند المرور عليها */
+.slick-prev:hover,
+.slick-next:hover {
+    background-color: var(--secondary-color); /* تغيير الخلفية عند المرور إلى اللون الثانوي */
+    color: var(--secondary-color); /* تغيير لون النص عند المرور */
+}
+
+/* تعديل موقع الأسهم */
+.slick-prev {
+    left: 10px; /* تحريك السهم السابق */
+}
+
+.slick-next {
+    right: 10px; /* تحريك السهم التالي */
+}
+
+/* تغيير خلفية feature-section إلى اللون الثانوي */
+.feature-section {
+    padding: 30px 0px; /* زيادة padding في الـ feature-section */
+    overflow: hidden;
+    background-color: var(--secondary-color); /* تغيير الخلفية إلى اللون الثانوي */
+}
+
+/* تعديل الكروت داخل الـ slick slider */
+.feature-section .card {
+    border: none !important;
+    text-align: center;
+    padding: 20px; /* زيادة padding داخل الكارت */
+    margin-bottom: 20px; /* زيادة المسافة بين الكروت */
+    background-color: var(--secondary-color); /* تغيير خلفية الكارت إلى اللون الثانوي */
+    width: 300px; /* زيادة عرض الكارت */
+    height: 400px; /* زيادة ارتفاع الكارت */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* توزيع العناصر داخل الكارت بشكل متساوي */
+    box-sizing: border-box; /* ضمان أن جميع المسافات داخل الكارت محسوبة بشكل صحيح */
+}
+
+/* تعديل الصورة داخل الكارت */
+.feature-section .card img {
+    width: 80px; /* تكبير حجم الصورة داخل الكارت */
+    height: auto; /* الحفاظ على نسبة عرض وارتفاع الصورة */
+    margin: 0px auto;
+    margin-bottom: 20px; /* زيادة المسافة بين الصورة والنص */
+}
+
+/* تعديل عنوان الكارت */
+.feature-section .card .card-title {
+    font-size: var(--subTitle); /* المحافظة على حجم الخط */
+    padding: 12px 0px;
+    font-weight: bold;
+    color: var(--primary-color); /* تغيير لون العنوان إلى اللون الأساسي */
+    margin-bottom: 10px; /* إضافة مسافة تحت العنوان */
+}
+
+/* تعديل النص داخل الكارت */
+.feature-section .card .card-text {
+    font-size: var(--bodyText); /* تصغير حجم الخط */
+    line-height: 20px; /* زيادة المسافة بين السطور */
+    color: var(--primary-color); /* تغيير لون النص إلى اللون الأساسي */
+    margin-bottom: 15px; /* إضافة مسافة تحت النص */
+}
+
+.feature-section .card:hover .card-title {
+    color: var(--primary-color); /* تغيير اللون عند المرور على البطاقة إلى اللون الأساسي */
+}
+
+/* تعديل العناصر عند الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .feature-section {
+        padding: 20px;
+    }
+
+    .feature-section .card {
+        padding: 15px; /* تقليل padding في الشاشات الصغيرة */
+        width: 270px; /* زيادة العرض في الشاشات الصغيرة */
+        height: 350px; /* زيادة الارتفاع في الشاشات الصغيرة */
+    }
+
+    .feature-section .card img {
+        width: 70px; /* تقليل حجم الصورة في الشاشات الصغيرة */
+    }
+}
+
+  

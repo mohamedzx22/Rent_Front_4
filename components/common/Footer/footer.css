@@ -1,0 +1,97 @@
+:root {
+  --bg-color: #E8E3B5; /* Light Cream */
+  --primary-color: #62643c; /* Avocado Green */
+  --secondary-color: #D7E9B0; /* Soft Green */
+  --accent-color: #F5F5DC; /* Beige */
+  --text-color: #4B4D3A; /* Dark Olive */
+  --white: #FFFFFF;
+  --black: #000000;
+}
+
+/* تأكد أن الـ html والـ body ياخدوا 100% من الارتفاع */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Libre Baskerville', serif;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+footer {
+  background: var(--primary-color);
+  padding: 20px 0;
+  width: 100%;
+  text-align: center;
+  border-top: 1px solid var(--accent-color);
+  color: var(--text-color);
+  margin-top: auto; /* يضمن بقاء الفوتر في أسفل الصفحة */
+}
+
+/* النصوص والعناصر داخل الفوتر */
+footer h4,
+footer p,
+footer a,
+footer i,
+footer .copyright {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-color);
+  line-height: 150%;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* روابط الفوتر */
+footer .quick_link .list-group .list-group-item {
+  background: none;
+  padding: 0;
+  margin-bottom: 5px;
+  font-size: 14px;
+  line-height: 150%;
+  color: #E8E3B5;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* عند الضغط */
+footer .quick_link .list-group .list-group-item:active {
+  color: #4B4D3A;
+}
+
+/* عند المرور */
+footer .quick_link .list-group .list-group-item:hover {
+  color: #4B4D3A;
+  background-color: var(--accent-color);
+}
+
+/* زر العودة لأعلى الصفحة */
+#back-top {
+  position: fixed;
+  bottom: 50px;
+  right: 20px;
+  opacity: 1;
+  transition: all 0.3s ease;
+  z-index: 9999;
+  font-size: 26px;
+  background: var(--primary-color);
+  color: var(--white);
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#back-top.active {
+  opacity: 1;
+  transition: all 0.6s ease;
+  transform: translateY(-20px);
+}

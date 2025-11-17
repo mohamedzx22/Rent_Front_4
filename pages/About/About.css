@@ -1,0 +1,94 @@
+/* .about-image-content{
+    background: var( --primary-color);
+    width: 350px;
+    line-height: 42px;
+
+}
+
+@media screen and (max-width : 575px) {
+    .about-image-content{
+    
+        width: 261px;
+        line-height: 34px;
+    
+    }
+    
+}
+ */
+
+
+/* Styling for cards and icons */
+
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-icon img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
+  
+  /* Styling for the text in cards */
+  .card-title {
+    color: var(--primary-color);
+  }
+  
+  .card-body .body-text {
+    font-size: 15px;
+    color: var(--text-color);
+  }
+  
+  /* Styling for the About Image */
+  .about-image img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+  
+  /* For the image content */
+  .about-image-content {
+    background: var(--primary-color);
+    width: 250px;
+    line-height: 36px;
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: var(--white);
+    text-align: center;
+    transform: translateY(-50%);
+  }
+  
+  /* Add margin to the top and bottom of headings */
+  .about-content h2 {
+    color: var(--text-color);
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+  
+  /* Mobile-friendly responsiveness */
+  @media screen and (max-width: 575px) {
+    .about-image-content {
+      width: 200px;
+      line-height: 30px;
+      font-size: 14px;
+    }
+  
+    .about-image img {
+      max-height: 250px;
+    }
+  }
+  
+  

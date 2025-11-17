@@ -1,0 +1,469 @@
+/* TenantDashboard.css */
+:root {
+  --bg-color: #FDF6EC; /* خلفية ناعمة بيج */
+  --primary-color: #C2B280; /* بيج غامق */
+  --primary-dark: #A7986D;
+  --secondary-color: #EFE5D5;
+  --accent-color: #F5EFD9; /* بيج فاتح */
+  --text-color: #5E5741; /* بني مائل للرمادي */
+  --white: #FFFFFF;
+  --black: #000000;
+  --success: #8BA88F;
+  --error: #C97C67;
+  --info: #A79F90;
+  --shadow: 0 4px 12px rgba(194, 178, 128, 0.2); /* ظل بيج ناعم */
+}
+
+.tenant-dashboard {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  display: flex;
+  gap: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sidebar {
+  width: 280px;
+  background-color: var(--primary-color);
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 1.2rem;
+  margin-bottom: 0.8rem;
+  background-color: transparent;
+  color: var(--accent-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateX(5px);
+}
+
+.nav-item.active {
+  background-color: var(--accent-color);
+  color: var(--primary-dark);
+  font-weight: 600;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+.main-content {
+  flex: 1;
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.application-card,
+.saved-card {
+  border: 1px solid var(--secondary-color);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  background-color: var(--white);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.application-card {
+  border-left: 5px solid var(--primary-color);
+}
+
+.application-card:hover,
+.saved-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.application-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.status-badge {
+  padding: 0.4rem 0.9rem;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-badge.pending {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  border: 1px solid var(--primary-color);
+}
+
+.status-badge.approved {
+  background-color: var(--success);
+  color: var(--white);
+}
+
+.status-badge.rejected {
+  background-color: var(--error);
+  color: var(--white);
+}
+
+.saved-property-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.saved-property-image:hover {
+  transform: scale(1.03);
+}
+
+.view-btn,
+.withdraw-btn {
+  padding: 0.7rem 1.4rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 0.8rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 500;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.view-btn {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.withdraw-btn {
+  background-color: var(--error);
+  color: var(--white);
+}
+
+.view-btn:hover,
+.withdraw-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.view-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.withdraw-btn:hover {
+  background-color: #8B0000;
+}
+
+/* Typography */
+.tenant-dashboard h1,
+.tenant-dashboard h2,
+.tenant-dashboard h3 {
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
+.tenant-dashboard h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.saved-card-content h3 {
+  color: var(--primary-dark);
+  margin-bottom: 0.6rem;
+  font-size: 1.4rem;
+}
+
+.location {
+  color: var(--text-color);
+  font-style: italic;
+  margin-bottom: 0.6rem;
+}
+
+.price {
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .tenant-dashboard {
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  
+  .sidebar {
+    width: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .application-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .view-btn,
+  .withdraw-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Add these styles to TenantDashboard.css */
+
+/* Messages Section */
+.messages-section {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.message-detail {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  margin-top: 1.5rem;
+}
+
+.message-detail h3 {
+  color: var(--primary-dark);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  border-bottom: 1px solid var(--accent-color);
+  padding-bottom: 0.5rem;
+}
+
+.message-content {
+  background-color: var(--accent-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+/* Reply Section */
+.reply-section {
+  margin-top: 2rem;
+  border-top: 1px solid var(--accent-color);
+  padding-top: 1.5rem;
+}
+
+.reply-section textarea {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--accent-color);
+  min-height: 150px;
+  margin-bottom: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: all 0.3s ease;
+}
+
+.reply-section textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--secondary-color);
+}
+
+.reply-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.send-btn {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.send-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.cancel-btn {
+  background-color: var(--error);
+  color: var(--white);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #8B0000;
+  transform: translateY(-2px);
+}
+
+/* Message Actions */
+.message-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--accent-color);
+}
+
+.reply-btn {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.reply-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Back Button */
+.back-btn {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: var(--white);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--accent-color);
+}
+
+th {
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+tr:hover {
+  background-color: var(--accent-color);
+}
+
+tr.unread {
+  font-weight: 600;
+  background-color: rgba(75, 77, 58, 0.05);
+}
+
+/* Button Styles */
+.view-btn, .delete-btn {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  font-weight: 500;
+}
+
+.view-btn {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.view-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.delete-btn {
+  background-color: var(--error);
+  color: var(--white);
+}
+
+.delete-btn:hover {
+  background-color: #8B0000;
+}
+.back-to-dashboard-btn {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.back-to-dashboard-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}

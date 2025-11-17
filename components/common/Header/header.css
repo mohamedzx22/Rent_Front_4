@@ -1,0 +1,82 @@
+/* تعديل الستايل الأساسي للهيدر */
+.header-section {
+  transition: all 0.3s ease-in-out;
+}
+
+/* الهيدر عند التثبيت */
+.header-section.is-sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background-color: #62643c !important;  /* اللون الغامق للهيدر */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);  /* تأثير الظل */
+  padding: 10px 0;
+}
+
+/* الروابط داخل الـ Navbar */
+.navbar .nav-link {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;  /* لون ثابت للروابط */
+  text-decoration: none;  /* إزالة التسطير */
+  transition: none;  /* إزالة التأثير عند المرور */
+  background: none;  /* إزالة الخلفية */
+  padding: 0;  /* التأكد من عدم وجود أي padding إضافي */
+}
+
+/* إزالة تأثير hover على الروابط */
+.navbar .nav-link:hover {
+  color: #fff;  /* عدم تغيير اللون عند المرور */
+  background: none;  /* إزالة أي خلفية عند المرور */
+}
+
+/* تغيير اللون عند المرور على روابط About و Listings (إلغاء التغيير) */
+.navbar .nav-link.about:hover,
+.navbar .nav-link.listings:hover {
+  color: #fff;  /* نفس اللون عند المرور */
+  background: none;  /* إزالة الخلفية */
+}
+
+/* الأزرار - Login و Register */
+.primaryBtn {
+  background-color: var(--primary-color) !important;
+  color: #fff !important;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.primaryBtn:hover {
+  background-color: #444 !important;
+}
+
+/* تصميم الأزرار في الموبايل */
+@media (max-width: 768px) {
+  .navbar .nav-link {
+    font-size: 14px;
+  }
+
+  .primaryBtn {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+}
+
+/* منع التغيير في اللون عند تفعيل الروابط */
+.navbar-nav .nav-link.active, 
+.navbar-nav .nav-link.show {
+  color: #fff !important;  /* بقاء اللون الأبيض عند التفعيل */
+  background: none !important;  /* إزالة الخلفية */
+}
+
+.logout-btn {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}

@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+
+:root {
+  --bg-color: #E8E3B5; /* Light Cream */
+  --primary-color: #62643c; /* Avocado Green */
+  --secondary-color: #D7E9B0; /* Soft Green */
+  --accent-color: #F5F5DC; /* Beige */
+  --text-color: #4B4D3A; /* Dark Olive */
+  --white: #FFFFFF; /* White */
+  --black: #000000; /* Black */
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Libre Baskerville', serif;
+}
+
+.header {
+  background-color: var(--primary-color);
+}
+
+.button {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+/* Example usage of white and black */
+.footer {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.card {
+  background-color: var(--white);
+  border: 1px solid var(--black);
+}
+
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+  font-family: var(--font-family);
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-wrapper > .content {
+  flex: 1;
+}

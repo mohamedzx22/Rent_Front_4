@@ -1,0 +1,242 @@
+/* ApplicationDetailPage.css */
+:root {
+  --bg-color: #E8E3B5;
+  --primary-color: #62643c;
+  --primary-dark: #4B4D3A;
+  --secondary-color: #D7E9B0;
+  --accent-color: #F5F5DC;
+  --text-color: #4B4D3A;
+  --white: #FFFFFF;
+  --black: #000000;
+  --success: #5A8F69;
+  --error: #B05D54;
+  --info: #4A6B8A;
+}
+
+.application-detail-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.back-btn {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.back-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.application-header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+  padding: 1.5rem;
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.application-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
+.application-header h2 {
+  font-size: 1.6rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-badge.pending {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  border: 1px solid var(--primary-color);
+}
+
+.status-badge.approved {
+  background-color: var(--success);
+  color: var(--white);
+}
+
+.status-badge.rejected {
+  background-color: var(--error);
+  color: var(--white);
+}
+
+.application-details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .application-details {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.detail-section {
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--secondary-color);
+  transition: transform 0.3s ease;
+}
+
+.detail-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.detail-section h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+  color: var(--primary-dark);
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-color);
+  font-weight: 600;
+}
+
+.detail-section p {
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.detail-section strong {
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.document-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.document-list li {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--secondary-color);
+  transition: background-color 0.2s ease;
+}
+
+.document-list li:hover {
+  background-color: var(--accent-color);
+}
+
+.pdf-icon {
+  color: var(--error);
+  margin-right: 0.8rem;
+  font-size: 1.3rem;
+}
+
+.view-doc-btn {
+    margin-left: auto;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.view-doc-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.download-doc-btn {
+    margin-right: auto;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+    .download-doc-btn:hover {
+        background-color: var(--primary-dark);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .application-detail-page {
+    padding: 1.5rem;
+  }
+  
+  .application-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .application-header h2 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .back-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  .view-doc-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}

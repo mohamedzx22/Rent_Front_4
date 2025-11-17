@@ -1,0 +1,65 @@
+:root {
+  --bg-color: #E8E3B5;         /* Light Cream */
+  --primary-color: #62643c;    /* Avocado Green */
+  --secondary-color: #D7E9B0;  /* Soft Green */
+  --accent-color: #F5F5DC;     /* Beige */
+  --text-color: #4B4D3A;       /* Dark Olive */
+  --white: #FFFFFF;            /* White */
+  --black: #000000;            /* Black */
+}
+
+/* 🌄 Banner Container */
+.inner-banner-wrap .inner-banner-container {
+  background-image: url("../../assets/images/Maadi\ Apartment.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  text-align: center;
+  padding-top: 40px;
+  position: relative;
+}
+
+/* 🔲 Banner Overlay */
+.inner-banner-wrap .inner-banner-container::before {
+  background-color: var(--black);
+  content: "";
+  display: block;
+  opacity: 0.65;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* 📝 Banner Content */
+.inner-banner-wrap .inner-banner-container .inner-banner-content {
+  padding: 90px 0 75px 0;
+  position: relative;
+  color: var(--white); /* خلي النص الأبيض يظهر فوق البانر */
+}
+
+/* 🧭 Navbar Background */
+.navbar-link {
+  background-color: rgba(0, 0, 0, 0.829); /* ممكن تستبدله بـ var(--black) لو عايز لون صريح */
+}
+
+/* 🧷 Breadcrumb Container */
+.navbar-link .breadcrumb {
+  padding: 0;
+  margin: 0;
+}
+
+/* 🔗 Breadcrumb Items */
+.navbar-link .breadcrumb .breadcrumb-item,
+.navbar-link .breadcrumb a {
+  color: var(--accent-color);  /* Beige */
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ›› Separator Between Breadcrumb Items */
+.navbar-link .breadcrumb-item + .breadcrumb-item::before {
+  color: var(--accent-color); /* نفس لون النص */
+}

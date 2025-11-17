@@ -1,0 +1,102 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    background-color: var(--bg-color);
+    padding: 20px;
+  }
+  
+  .register-form {
+    background: var(--accent-color);
+    padding: 50px 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    max-width: 600px;
+    min-height: 60vh;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-color);
+    overflow: hidden;
+  }
+  
+  .register-form h2 {
+    margin-bottom: 15px;
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .register-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 25px;
+    border-radius: 50%;
+    border: 3px solid var(--secondary-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .register-form input {
+    margin-bottom: 20px;
+    padding: 14px;
+    font-size: 16px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 8px;
+    background-color: var(--white);
+    color: var(--text-color);
+    width: 100%;
+  }
+  
+  .register-form input::placeholder {
+    color: #888;
+  }
+  
+  .register-form button {
+    padding: 14px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+  
+  .register-form button:hover {
+    background-color: #4e5030;
+  }
+  
+  .switch-link {
+    margin-top: 15px;
+    font-size: 14px;
+    color: var(--text-color);
+  }
+  
+  .switch-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 5px;
+  }
+  
+  .switch-link a:hover {
+    text-decoration: underline;
+  }
+  
+
+  /* تنسيق القائمة المنسدلة */
+.register-form select {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: #fff;
+}
